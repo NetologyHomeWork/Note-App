@@ -1,0 +1,71 @@
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@mcmouse88
+NetologyHomeWork /
+PostWallLesson5
+Public
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+
+    Settings
+
+PostWallLesson5/.github/workflows/gradle.yml
+@mcmouse88
+mcmouse88 Create gradle.yml
+Latest commit 495b5f6 on 26 Apr
+History
+1 contributor
+28 lines (24 sloc) 619 Bytes
+name: Kotlin CI with Gradle
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew test jacocoTestReport
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+          name: jacoco_reports
+          path: build/reports/jacoco/test/html
+
+    © 2022 GitHub, Inc.
+
+    Terms
+    Privacy
+    Security
+    Status
+    Docs
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
