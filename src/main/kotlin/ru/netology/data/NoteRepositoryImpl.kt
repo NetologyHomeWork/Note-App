@@ -13,13 +13,12 @@ class NoteRepositoryImpl : ItemRepository<Note> {
 
     override fun editItem(item: Note) {
         val note = getItemById(item.id)
-        print("Enter the title for edit this note: ")
+        /*print("Enter the title for edit this note: ")
         val title = readln()
         print("Enter the text for edit this note: ")
-        val text = readln()
-        val newComment = note.copy(title = title, text = text)
+        val text = readln()*/
         listNotes.remove(note)
-        listNotes.add(newComment)
+        listNotes.add(item)
     }
 
     override fun deleteItem(item: Note) {

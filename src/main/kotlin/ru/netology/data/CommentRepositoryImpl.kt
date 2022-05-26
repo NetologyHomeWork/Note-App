@@ -15,11 +15,11 @@ class CommentRepositoryImpl : ItemRepository<Comment> {
 
     override fun editItem(item: Comment) {
         val comment = getItemById(item.id)
-        print("Enter the text for edit this comment")
-        val text = readln()
-        val newComment = comment.copy(text = text)
+        /*print("Enter the text for edit this comment")
+        val text = readln()*/
+        // val newComment = comment.copy(text = text)
         listComment.remove(comment)
-        listComment.add(newComment)
+        listComment.add(item)
     }
 
     override fun deleteItem(item: Comment) {

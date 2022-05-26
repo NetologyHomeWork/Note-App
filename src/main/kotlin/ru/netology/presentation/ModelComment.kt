@@ -2,10 +2,7 @@ package ru.netology.presentation
 
 import ru.netology.data.CommentRepositoryImpl
 import ru.netology.domain.comment.Comment
-import ru.netology.domain.usecase.AddItemUseCase
-import ru.netology.domain.usecase.DeleteItemUseCase
-import ru.netology.domain.usecase.EditItemUseCase
-import ru.netology.domain.usecase.GetItemListUseCase
+import ru.netology.domain.usecase.*
 
 class ModelComment {
     private val repository = CommentRepositoryImpl()
@@ -13,8 +10,9 @@ class ModelComment {
     private val editItemUseCase = EditItemUseCase(repository)
     private val deleteItemUseCase = DeleteItemUseCase(repository)
     private val getItemListUseCase = GetItemListUseCase(repository)
+    private val getItemByIdUseCase = GetItemByIdUseCase(repository)
 
-    val listNotes
+    val listComments
         get() = getItemListUseCase.getItemList().toList().sortedBy { it.id }
 
 
@@ -28,5 +26,13 @@ class ModelComment {
 
     fun delete(comment: Comment) {
         deleteItemUseCase.deleteItem(comment)
+    }
+
+    fun getCommentById(commentId: Int): Comment {
+        return getItemByIdUseCase.getItemById(commentId)
+    }
+
+    fun restoreComment(commentId: Int) {
+        repository.restoreComment(commentId)
     }
 }
